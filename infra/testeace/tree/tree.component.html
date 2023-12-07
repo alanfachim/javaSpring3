@@ -1,0 +1,43 @@
+
+
+<ng-template #tmplNode let-node="node">
+  <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-'+node.id">
+
+    <div class="node-title" style="display: flex;align-items: center;" (click)="node.isExpanded=!node.isExpanded">
+      <mat-icon>
+        {{node.children.length ==0?'drag_indicator': node.isExpanded ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+      <app-condition [node]="node" (onNodeAdd)="addNode($event)" (onNodeDelete)="onNodeDelete($event)" style="width: 100%;"></app-condition>
+    </div>
+
+    <div *ngIf="node.isExpanded && node.children.length" class="node-children" cdkDropList
+      [cdkDropListData]="node.children" [id]="node.id" [cdkDropListConnectedTo]="dropTargetIds"
+      (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+
+      <div *ngFor="let child of node.children" cdkDrag [cdkDragData]="child.id" (cdkDragMoved)="dragMoved($event)">
+        <ng-container *ngTemplateOutlet="tmplNode,context:{node:child}"></ng-container>
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>
+
+<div cdkDropList [cdkDropListData]="nodes" [id]="'main'" [cdkDropListConnectedTo]="dropTargetIds"
+  (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+
+  <div *ngFor="let node of nodes" cdkDrag [cdkDragData]="node.id" (cdkDragMoved)="dragMoved($event)">
+
+    <ng-container *ngTemplateOutlet="tmplNode,context:{node:node}"></ng-container>
+
+  </div>
+</div>
+<br>
+<!--
+<hr />
+<p><strong>current drag drop action:</strong></p>
+<pre>{{dropActionTodo|json}}</pre>
+<hr />
+<p><strong>tree data</strong></p>
+<pre>{{nodes|json}}</pre>
+ -->

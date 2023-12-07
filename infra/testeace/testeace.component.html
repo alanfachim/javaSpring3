@@ -1,0 +1,84 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-button-toggle-group name="fontStyle" [vertical]="true" aria-label="Font Style">
+      <mat-button-toggle value="bold">jornada LTC</mat-button-toggle>
+      <mat-button-toggle value="italic">jornada middle</mat-button-toggle>
+      <mat-button-toggle value="underline">jornada atacado</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="margin: 30px;  border: 1px solid lightgrey;  border-radius: 4px;">
+    <div style="padding: 0px;">
+      <div
+        style="display: flex; justify-content: space-between;align-items: center;background: white; border-bottom: 1px solid lightgray;">
+        <div style="width: 60%;    padding-left: 20px;height: 70px;display: flex;align-items: center;">
+          <mat-form-field appearance="outline" style="    height: 65px">
+            <mat-label>buscar</mat-label>
+            <input matInput placeholder="nome da regra">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button mat-raised-button color="accent" style="margin-left: 15px;"><mat-icon
+              style="margin-right: 5px;">add</mat-icon> <span style="margin-right: 15px;">nova regra</span></button>
+        </div>
+
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+        </mat-paginator>
+      </div>
+      <div style="padding: 15px; background-color: white;">
+        <mat-accordion>
+          <div *ngIf="(pedidosService.listPedidosObj | async) as books"></div>
+          <mat-expansion-panel style="background: #dedede;" *ngFor="let regra of regras; index as i"
+            (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header style="    background: lightgrey;">
+              <mat-panel-title style="display: flex;align-items: center;">
+                <mat-icon>drag_indicator</mat-icon>
+                <b style="width: 280px;">{{regra.nome}}</b>
+                <div class="title" [style.opacity]="0.3+regra.disparos/1000"> {{regra.disparos}} disparos</div>
+              </mat-panel-title>
+              <mat-panel-description>
+                <p>último disparo 11/02/2023 11:40</p>
+                <div style="margin-left: auto;">habilitar</div>
+                <mat-slide-toggle style="margin-left: 8px;" (click)="$event.stopPropagation()"
+                  [checked]="regra.habilitado"></mat-slide-toggle>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p style="display: flex;align-items: center;margin-top: 0px;">
+              Regra responsável por identificar a execução do fluxo de consulta de apontamentos
+              <mat-icon style="margin-left: 5px; font-size: large;">edit</mat-icon>
+            </p>
+            <hr style="background: lightgray; ">
+            <br>
+            <mat-panel-description>
+
+              <button (click)="addNode($event)"   mat-button><mat-icon>
+                add
+              </mat-icon> adicionar</button>
+              <div style="margin-left: auto;">habilitar edição</div>
+              <mat-slide-toggle style="margin-left: 8px;" (click)="$event.stopPropagation()"
+                [checked]="regra.habilitado"></mat-slide-toggle>
+            </mat-panel-description>
+            <app-tree #tree></app-tree>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>

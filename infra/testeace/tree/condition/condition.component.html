@@ -1,0 +1,68 @@
+<div *ngIf="node.children.length ==0" style="display: flex; align-items: center;width: 100%; padding: 6px;">
+  <mat-form-field appearance="fill"
+    style="max-width: 300px; padding-right: 20px; padding-top: 3px;margin-bottom: -15px;">
+    <mat-label>propriedade</mat-label>
+    <mat-select (selectionChange)="selected($event)"  [value]="propriedade">
+      <mat-option value="or">
+        OR
+      </mat-option>
+      <mat-option value="and" style="border-bottom: 2px solid gray; margin-bottom: 5px;">
+        AND
+      </mat-option>
+      <mat-option *ngFor="let propriedade of propriedades" [value]="propriedade.valor">
+        {{propriedade.nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill"
+    style="max-width: 100px; padding-right: 20px; padding-top: 3px;margin-bottom: -15px;">
+    <mat-label>operacao</mat-label>
+    <mat-select [value]="operacao">
+      <mat-option  value="eq">
+        =
+      </mat-option>
+      <mat-option  value="gt">
+        >
+      </mat-option>
+      <mat-option  value="lo">
+        <
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="  padding-right: 20px; padding-top: 3px;margin-bottom: -15px; flex-grow: 1;">
+    <mat-label>valor</mat-label>
+    <input matInput [value]="valor" placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+  <button mat-icon-button class="mat-icon-rtl-mirror" style="padding-right: 20px; " (click)="delete($event)"
+    aria-label="Example icon-button with a heart icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<div *ngIf="node.children.length > 0" style="display: flex; align-items: center;width: 100%; padding: 6px;">
+  <mat-form-field appearance="fill" (click)="$event.stopPropagation()"
+    style="max-width: 100px; padding-right: 20px; padding-top: 3px;margin-bottom: -15px;margin-right: 5px;">
+    <mat-label>operador</mat-label>
+    <mat-select (selectionChange)="selected($event)" [value]="tipo">
+      <mat-option value="or">
+        OR
+      </mat-option>
+      <mat-option value="and" style="border-bottom: 2px solid gray; margin-bottom: 5px;">
+        AND
+      </mat-option>
+      <mat-option *ngFor="let propriedade of propriedades" [value]="propriedade.valor">
+        {{propriedade.nome}}
+      </mat-option>
+    </mat-select>
+
+
+  </mat-form-field>
+  <button (click)="add($event)" style="margin: 10px;" mat-stroked-button><mat-icon>
+    add
+  </mat-icon> adicionar</button>
+  <button mat-icon-button class="mat-icon-rtl-mirror" style="padding-right: 20px;margin-left: auto; " (click)="delete($event)"
+    aria-label="Example icon-button with a heart icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

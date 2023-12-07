@@ -1,0 +1,90 @@
+.mat-tree-node2 {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+  border-radius: 3px;
+  margin: 5px;
+  border: 1px solid lightgray;
+  background-color: white;
+  color: rgb(95, 95, 95);
+}
+
+
+.mat-tree-node {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+  background-color: white;
+}
+
+.mat-icon-button {
+  padding: 0;
+  min-width: 0;
+  width: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cdk-drag-placeholder {
+    display: none;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+    background: #fff;
+    opacity: 0.3;
+}
+
+.drop-inside {
+    border: 3px solid rgb(171, 171, 171);
+}
+
+.drop-before {
+    border-top: 3px solid rgb(171, 171, 171);
+}
+
+.drop-after {
+    border-bottom: 3px solid rgb(171, 171, 171);
+}
+
+.node-title {
+  line-height: 40px !important;
+  margin: 5px;
+  background: #eee;
+  cursor: grab;
+  border-radius: 4px;
+  border: 1px solid #e7c9c9
+}
+
+.node-children {
+    position: relative;
+    transition: height 0.2s;
+    margin-left: 40px;
+}
+.item-notes {
+  margin-left:20px;
+  color:#aaa;
+ }

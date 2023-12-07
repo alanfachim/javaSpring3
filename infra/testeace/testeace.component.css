@@ -1,0 +1,37 @@
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between !important;
+  align-items: end;
+}
+
+.mat-expansion-panel {
+  border: 1px solid #e8e8e8;
+}
+
+.mat-slide-toggle-thumb {
+  background: #ee7600 !important;
+}
+
+.mat-slide-toggle-bar {
+  background-color: rgb(177 180 193 / 54%) !important;
+}
+
+.mat-raised-button {
+  background: #ee7600 !important;
+}
+
+.example-headers-align .mat-mdc-form-field+.mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.title {
+  background: #8a4500;
+  border-radius: 4px;
+  color: white;
+  width: 150px;
+  font-size: 12px;
+  text-align: center;
+}
